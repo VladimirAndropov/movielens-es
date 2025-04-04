@@ -8,7 +8,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
@@ -20,6 +20,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <minimizeJar>false</minimizeJar>
               <transformers>
                 <transformer>
                   <mainClass>com.okmich.movielens.es.Main</mainClass>
@@ -28,6 +29,13 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>15</source>
+          <target>15</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>

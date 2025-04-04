@@ -120,7 +120,7 @@ public class ESHighLevelRestClient {
         SearchRequest searchRequest = new SearchRequest(index); // Change to your index
         searchRequest.source().query(QueryBuilders.matchQuery(name, searchWord));
         // Execute search
-        SearchResponse response = this.restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
         // Display results
         if (response.getHits().getHits().length == 0) {
             LOG.log(Level.INFO, "No results found for: " + searchWord);

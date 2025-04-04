@@ -1,53 +1,50 @@
 package com.okmich.movielens.es.ui;
 
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-
+import javax.swing.JFrame;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 
-import static com.okmich.movielens.es.GetData.*;
-
-public class AppFrame extends JFrame {
-    private JPanel panel;
+public class AppFrame {
+    private final JFrame mainFrame;
+    private JPanel panel1;
     private JButton button1;
     private JTextField textField1;
     private JTextArea textArea1;
 
-
     public AppFrame() {
-        add(panel);
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String searchWord = textField1.getText().trim();
-                try {
-                    StringBuilder results = new StringBuilder();
-                    SearchHits hits = GetHits("ml-tags","tag",searchWord);
-                    results.append(hits);
+        mainFrame = new JFrame("Elasticsearch MVC Search");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                    SearchHit firstHit = hits.getAt(1);
-                    results.append(firstHit);
-//получим объект
-                    for (SearchHit hit : hits) {
-                        results.append(hit.getSourceAsString()).append("\n\n");
-                    }
-//выводим как json
-                    for (SearchHit hit : hits) {
-                        Map<String, Object> source = hit.getSourceAsMap();
-                        String title = (String) source.get("title");
-                        Number movieId = (Number) source.get("movieId");
-                        results.append(title).append(" - ").append(movieId).append("\n\n");
-                    }
-//выводим отдельным полем
+        textField1 = new JTextField(20);
+        button1 = new JButton("Search");
+        textArea1 = new JTextArea(15, 40);
+        textArea1.setEditable(false);
 
-                    textArea1.setText(results.toString());
-                    } catch (Exception ex) {
-                    textArea1.setText("Error searching: " + ex.getMessage());
-                    }
-                }
-        });
+        JPanel panel = new JPanel();
+        panel.add(textField1);
+        panel.add(button1);
+
+        mainFrame.add(panel, BorderLayout.NORTH);
+        mainFrame.add(new JScrollPane(textArea1), BorderLayout.CENTER);
+        mainFrame.pack();
+    }
+
+    public void show() {
+        mainFrame.setVisible(true);
+    }
+
+    // Getters for controller
+    public JButton getButton1() {
+        return button1;
+    }
+
+    public JTextField getTextField1() {
+        return textField1;
+    }
+
+    public JTextArea gettextArea1() {
+        return textArea1;
     }
 }

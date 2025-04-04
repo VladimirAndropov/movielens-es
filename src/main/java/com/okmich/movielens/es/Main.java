@@ -36,12 +36,8 @@ public class Main {
 //            ex.printStackTrace();
 //        }
         SwingUtilities.invokeLater(() -> {
-            // Создаем экземпляр формы
-            AppFrame appFrame = new AppFrame();
-            // Делаем форму видимой
-            appFrame.setVisible(true);
-            appFrame.setSize(400,800);
-            appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            SearchController controller = new SearchController();
+            controller.showView();
         });
 
     }
