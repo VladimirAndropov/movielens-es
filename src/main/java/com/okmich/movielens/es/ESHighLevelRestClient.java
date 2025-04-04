@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.DocWriteResponse.Result;
@@ -21,11 +23,13 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.main.MainResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.*;
+import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.client.indices.GetIndexResponse;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 /**
  *
@@ -118,7 +122,12 @@ public class ESHighLevelRestClient {
 
     public SearchHits getHits(String index, String name, String searchWord) throws IOException {
         SearchRequest searchRequest = new SearchRequest(index); // Change to your index
-        searchRequest.source().query(QueryBuilders.matchQuery(name, searchWord));
+//        searchRequest.source().query(QueryBuilders.matchQuery(name, searchWord));   // выбор поля поиска
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.query(QueryBuilders.multiMatchQuery(searchWord)
+                .type(MultiMatchQueryBuilder.Type.BEST_FIELDS));
+
+        searchRequest.source(sourceBuilder);
         // Execute search
         SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
         // Display results
@@ -126,6 +135,15 @@ public class ESHighLevelRestClient {
             LOG.log(Level.INFO, "No results found for: " + searchWord);
         }
         return  response.getHits();
+
+    }
+
+    public String[] catIndices(String indices) throws IOException {
+        // 1. Create a request to get all indices
+        GetIndexRequest request = new GetIndexRequest(indices);
+        // 2. Execute the request
+        GetIndexResponse response = restHighLevelClient.indices().get(request, RequestOptions.DEFAULT);
+        return  response.getIndices();
 
     }
 

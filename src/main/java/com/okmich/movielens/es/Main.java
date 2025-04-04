@@ -35,10 +35,8 @@ public class Main {
 //        } catch (Exception ex) {
 //            ex.printStackTrace();
 //        }
-        SwingUtilities.invokeLater(() -> {
-            SearchController controller = new SearchController();
-            controller.showView();
-        });
+        // This will create and show the frame
+        SwingUtilities.invokeLater(SearchController::new);
 
     }
 
