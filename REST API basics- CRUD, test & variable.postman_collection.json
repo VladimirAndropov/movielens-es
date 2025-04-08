@@ -12,7 +12,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c7e2ae38-6b21-4acd-a5c8-84d6fb621755",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -23,6 +22,21 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -47,7 +61,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c7e2ae38-6b21-4acd-a5c8-84d6fb621755",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -191,18 +204,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/info?id=1",
+					"raw": "http://localhost:9200/ml-tags",
+					"protocol": "http",
 					"host": [
-						"{{base_url}}"
+						"localhost"
 					],
+					"port": "9200",
 					"path": [
-						"info"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
+						"ml-tags"
 					]
 				},
 				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
@@ -403,6 +412,1039 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "tags/_bulk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/home/vladimir/Документы/fa/Udemy - SQL, NoSQL, Big Data and Hadoop 2020-1/json_bulk/ml_tags.json"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/tags/_bulk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"tags",
+						"_bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ml-ratings/_mapping",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/ml-ratings/_mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"ml-ratings",
+						"_mapping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ml-tags/_bulk",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Zemlypro22!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-ndjson",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/E:/Документы/fa/Udemy - SQL, NoSQL, Big Data and Hadoop 2020-1/json_bulk/ml-tags.ndjson"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/ml-tags/_bulk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"ml-tags",
+						"_bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ml-movies/_bulk",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "sglOuDn-xn*3+VxU0W24",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-ndjson",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/E:/Документы/fa/Udemy - SQL, NoSQL, Big Data and Hadoop 2020-1/json_bulk/ml-movies.ndjson"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/ml-movies/_bulk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"ml-movies",
+						"_bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ml-users/_bulk",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "sglOuDn-xn*3+VxU0W24",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-ndjson",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/E:/Документы/fa/Udemy - SQL, NoSQL, Big Data and Hadoop 2020-1/json_bulk/ml-tags.ndjson"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/ml-users/_bulk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"ml-users",
+						"_bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ml-ratings/_bulk",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "sglOuDn-xn*3+VxU0W24",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-ndjson",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/E:/Документы/fa/Udemy - SQL, NoSQL, Big Data and Hadoop 2020-1/json_bulk/ml-ratings.ndjson"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/ml-ratings/_bulk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"ml-ratings",
+						"_bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_ml/data_frame/analytics/rating_prediction",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"source\": {\n    \"index\": \"ml-ratings\",\n    \"query\": {\n      \"range\": {\n        \"timestamp\": {\n          \"gte\": \"now-1y/y\"\n        }\n      }\n    }\n  },\n  \"dest\": {\n    \"index\": \"ml-predictions\"\n  },\n  \"analysis\": {\n    \"regression\": {\n      \"dependent_variable\": \"rating\",\n      \"training_percent\": 70,\n      \"randomize_seed\": 42,\n      \"num_top_feature_importance_values\": 5\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_ml/data_frame/analytics/rating_prediction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_ml",
+						"data_frame",
+						"analytics",
+						"rating_prediction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_ml/anomaly_detectors/rating_anomalies",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"analysis_config\": {\n    \"bucket_span\": \"1h\",          // Analyze data hourly\n    \"detectors\": [{\n      \"function\": \"high_mean\",    // Detect unusually high averages\n      \"field_name\": \"rating\"      // Field to analyze\n    }]\n  },\n  \"data_description\": {\n    \"time_field\": \"timestamp\",    // Required for time-series\n    \"time_format\": \"epoch_ms\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_ml/anomaly_detectors/rating_anomalies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_ml",
+						"anomaly_detectors",
+						"rating_anomalies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/_license",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_license",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_license"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_anomaly_detection/detectors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"rating_anomalies6\",\n  \"description\": \"Detect unusual rating patterns\",\n  \"time_field\": \"timestamp\",\n  \"indices\": [\"ml-ratings\"],\n  \"feature_attributes\": [\n    {\n      \"feature_name\": \"avg_rating\",\n      \"feature_enabled\": true,\n      \"aggregation_query\": {\n        \"avg_rating\": {\n          \"avg\": {\n            \"field\": \"rating\"\n          }\n        }\n      }\n    },\n    {\n      \"feature_name\": \"rating_count\",\n      \"feature_enabled\": true,\n      \"aggregation_query\": {\n        \"rating_count\": {\n          \"value_count\": {\n            \"field\": \"rating\"\n          }\n        }\n      }\n    }\n  ],\n  \"detection_interval\": {\n    \"period\": {\n      \"interval\": 60,\n      \"unit\": \"Minutes\"  // Changed from \"Hours\" to \"Minutes\"\n    }\n  },\n  \"window_delay\": {\n    \"period\": {\n      \"interval\": 10,\n      \"unit\": \"Minutes\"\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_anomaly_detection/detectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_anomaly_detection",
+						"detectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_anomaly_detection/detectors start",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_anomaly_detection/detectors/5DLdFZYBf3hLUBSBVcon/_start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_anomaly_detection",
+						"detectors",
+						"5DLdFZYBf3hLUBSBVcon",
+						"_start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_anomaly_detection/detectors/rating_anomalies/results/_search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"query\": {\n    \"range\": {\n      \"anomaly_grade\": {\n        \"gte\": 0.7\n      }\n    }\n  },\n  \"sort\": [\n    {\n      \"anomaly_score\": {\n        \"order\": \"desc\"\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_anomaly_detection/detectors/5DLdFZYBf3hLUBSBVcon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_anomaly_detection",
+						"detectors",
+						"5DLdFZYBf3hLUBSBVcon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_anomaly_detection/detectors start",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_anomaly_detection/detectors/5DLdFZYBf3hLUBSBVcon/results",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_anomaly_detection",
+						"detectors",
+						"5DLdFZYBf3hLUBSBVcon",
+						"results"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_security/api/roles/anomaly_detection_admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"cluster_permissions\": [\n    \"cluster:admin/opensearch/ad/detector/write\",\n    \"cluster:admin/opensearch/ad/detector/read\",\n    \"cluster:admin/opensearch/ad/detector/delete\",\n    \"cluster:admin/opensearch/ad/detector/start\",\n    \"cluster:admin/opensearch/ad/detector/stop\"\n  ],\n  \"index_permissions\": [{\n    \"index_patterns\": [\"ml-ratings\"],\n    \"allowed_actions\": [\n      \"indices:data/read/search\",\n      \"indices:data/read/get\"\n    ]\n  }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_security/api/roles/anomaly_detection_admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_security",
+						"api",
+						"roles",
+						"anomaly_detection_admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_ml/models/_register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"name\": \"movie_recommender_knn\",\n  \"version\": \"1.0.0\",\n  \"description\": \"KNN model for movie recommendations\",\n  \"model_format\": \"TORCH_SCRIPT\",  // Required field\n  \"model_task_type\": \"NEURAL_NETWORK\",  // Changed task type\n  \"model_config\": {\n    \"model_type\": \"knn\",\n    \"embedding_dimension\": 128,\n    \"framework_type\": \"SENTENCE_TRANSFORMERS\",\n    \"all_config\": \"{\\n  \\\"model_id\\\": \\\"sentence-transformers/all-MiniLM-L6-v2\\\"\\n}\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_ml/models/_register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_ml",
+						"models",
+						"_register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_cluster/settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"persistent\": {\n    \"plugins.ml_commons.only_run_on_ml_node\": false\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_cluster/settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cluster",
+						"settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_ml/models/_register2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " \n{\n  \"name\": \"cf_knn_model\",\n  \"version\": \"1.0.0\",\n  \"model_format\": \"TORCH_SCRIPT\",\n  \"model_task_type\": \"NEURAL_NETWORK\",\n  \"model_config\": {\n    \"model_type\": \"knn\",\n    \"framework_type\": \"SENTENCE_TRANSFORMERS\",\n    \"embedding_dimension\": 64,\n    \"all_config\": \"{\\\"space_type\\\":\\\"cosinesimil\\\", \\\"engine\\\":\\\"nmslib\\\"}\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_ml/models/_register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_ml",
+						"models",
+						"_register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_plugins/_security/api/roles/anomaly_detection_admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_security/api/roles/anomaly_detection_admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_security",
+						"api",
+						"roles",
+						"anomaly_detection_admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_plugins/_security/api/account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_security/api/account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_security",
+						"api",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_plugins/_security/api/roles/anomaly_detection_admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"cluster_permissions\": [\n    \"cluster:admin/opensearch/ad/detector/write\",\n    \"cluster:admin/opensearch/ad/detector/read\",\n    \"cluster:admin/opensearch/ad/detector/delete\",\n    \"cluster:admin/opensearch/ad/detector/start\",\n    \"cluster:admin/opensearch/ad/detector/stop\"\n  ],\n  \"index_permissions\": [{\n    \"index_patterns\": [\"ml-ratings\"],\n    \"allowed_actions\": [\n      \"indices:data/read/search\",\n      \"indices:data/read/get\"\n    ]\n  }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_security/api/roles/anomaly_detection_admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_security",
+						"api",
+						"roles",
+						"anomaly_detection_admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_plugins/_security/api/roles/ml_model_creator",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Opensearch1!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cluster_permissions\": [\n    \"cluster:admin/opensearch/ml/register-model\",\n    \"cluster:admin/opensearch/ml/models/*\"\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_plugins/_security/api/roles/ml_model_creator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_plugins",
+						"_security",
+						"api",
+						"roles",
+						"ml_model_creator"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -427,15 +1469,12 @@
 	],
 	"variable": [
 		{
-			"id": "530bbdd9-38d3-441e-92dc-61f171c18dc2",
 			"key": "id",
 			"value": "1"
 		},
 		{
-			"id": "57b5ecc1-1ffd-4eb5-a9a4-fa78c5251c5d",
 			"key": "base_url",
 			"value": "https://postman-rest-api-learner.glitch.me/"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
