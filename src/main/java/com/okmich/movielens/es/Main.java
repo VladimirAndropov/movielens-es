@@ -8,6 +8,7 @@ package com.okmich.movielens.es;
 import com.okmich.movielens.es.ui.AppFrame;
 
 import javax.swing.*;
+import java.nio.file.Paths;
 
 /**
  * @author michael.enudi
@@ -20,7 +21,7 @@ public class Main {
 //            System.exit(-1);
 //        }
 //        String folder = args[0];
-//
+
 //        try (MovielensFileLoader movielensFileLoader = new MovielensFileLoader();) {
 //
 //            movielensFileLoader.loadUsers(Paths.get(folder, "users.csv"), 10000);

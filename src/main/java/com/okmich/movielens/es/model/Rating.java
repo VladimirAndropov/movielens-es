@@ -5,6 +5,7 @@
  */
 package com.okmich.movielens.es.model;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class Rating extends Model {
     private final long userId;
     private final long movieId;
     private final float rating;
-    private final String timestamp;
+    private final Date timestamp;
 
     private Movie movie;
 
@@ -25,7 +26,8 @@ public class Rating extends Model {
         this.userId = userId;
         this.movieId = movieId;
         this.rating = rating;
-        this.timestamp = secondsTsToDateString(timestamp);
+//        this.timestamp = secondsTsToDateString(timestamp);
+        this.timestamp = new Date(timestamp*1000);
     }
 
     /**
@@ -52,7 +54,11 @@ public class Rating extends Model {
     /**
      * @return the timestamp
      */
-    public String getTimestamp() {
+//    public String getTimestamp() {
+//        return timestamp;
+//    }
+
+    public Date getTimestamp() {
         return timestamp;
     }
 
@@ -80,7 +86,8 @@ public class Rating extends Model {
             joinMovie(movie, map);
         }
         map.put("rating", this.getRating());
-        map.put("ts", this.getTimestamp());
+//        map.put("ts", this.getTimestamp());
+        map.put("timestamp", this.getTimestamp());
 
         return map;
     }

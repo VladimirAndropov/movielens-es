@@ -18,7 +18,7 @@ public abstract class Model {
 
     public abstract Map<String, Object> toMap();
 
-    protected final DateFormat DF = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    protected final DateFormat DF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     protected void joinMovie(Movie movie, Map<String, Object> model) {
         model.put("title", movie.getTitle());

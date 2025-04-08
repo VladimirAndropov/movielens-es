@@ -6,7 +6,6 @@
 package com.okmich.movielens.es;
 
 import java.io.IOException;
-// SearchController.java
 import com.okmich.movielens.es.ui.AppFrame;
 
 import org.elasticsearch.search.SearchHit;
@@ -15,6 +14,7 @@ import org.elasticsearch.search.SearchHits;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +50,58 @@ public class SearchController {
                 catIndices();
             }
         });
+        view.getButton3().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadData();
+            }
+        });
+        view.getAnomalyDetectionButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AnomalyDetection();
+            }
+        });
+    }
+
+    private void AnomalyDetection() {
+        new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                try {
+                    String anomaly = model.AnomalyDetection();
+                    publish(anomaly);
+                } catch (IOException ex) {
+                    publish("Error: " + ex.getMessage() + "\n");
+                }
+                return null;
+            }
+
+            @Override
+            protected void process(List<String> chunks) {
+                chunks.forEach(chunk ->
+                        view.getTextArea2().append(chunk + "\n")
+                );
+            }
+        }.execute();
+    }
+
+    private void loadData(){
+        String folder = "";
+        try (MovielensFileLoader movielensFileLoader = new MovielensFileLoader();) {
+
+            movielensFileLoader.loadUsers(Paths.get(folder, "users.csv"), 10000);
+
+            movielensFileLoader.loadMovies(Paths.get(folder, "movies.csv"));
+
+            movielensFileLoader.loadTags(Paths.get(folder, "tags.csv"), 20000);
+
+            movielensFileLoader.loadRatings(Paths.get(folder, "ratings.csv"), 20000);
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void catIndices(){

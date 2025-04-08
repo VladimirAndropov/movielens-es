@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.util.EntityUtils;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.DocWriteResponse.Result;
 import org.elasticsearch.action.bulk.BulkItemResponse;
@@ -42,10 +47,18 @@ public class ESHighLevelRestClient {
 
     //private TransportClient transportClient;
     public ESHighLevelRestClient() {
+        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(
+                AuthScope.ANY,
+                new UsernamePasswordCredentials("admin", "Opensearch1!")  // Replace with actual credentials
+        );
         LOG.info("trying to instantiate the high level client");
         this.restHighLevelClient = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("localhost", 9200, "http")));
+                        new HttpHost("localhost", 9200, "http"))
+                        .setHttpClientConfigCallback(httpClientBuilder ->
+                                httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
+                        ));
         LOG.log(Level.INFO, "Done instantiating the high level client {0}", this.restHighLevelClient);
     }
 
@@ -144,6 +157,15 @@ public class ESHighLevelRestClient {
         // 2. Execute the request
         GetIndexResponse response = restHighLevelClient.indices().get(request, RequestOptions.DEFAULT);
         return  response.getIndices();
+
+    }
+
+    public String AnomalyDetection() throws IOException {
+        String detectorId = "5DLdFZYBf3hLUBSBVcon";
+        String endpoint = "/_plugins/_anomaly_detection/detectors/" + detectorId + "/results";
+        Request request = new Request("GET", endpoint);
+        Response response = restHighLevelClient.getLowLevelClient().performRequest(request);
+        return  EntityUtils.toString(response.getEntity());
 
     }
 
